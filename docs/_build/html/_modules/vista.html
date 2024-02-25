@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vista &mdash; documentación de MiProyecto - 0.0.1</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=6fcc102b"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=efdbd0b9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MiProyecto
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controlador.html">controlador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelo.html">modelo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vista.html">vista module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MiProyecto</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">vista</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para vista</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Diplomatura en Python Nivel Intermedio.</span>
+<span class="sd">Alumno: Carla Svampa.</span>
+<span class="sd">Vista - aplicacion: Registro de Liquidaciones.</span>
+<span class="sd">Librerías usadas: tkinter.</span>
+<span class="sd">Módulos importados: modelo.</span>
+<span class="sd">Python 3.5.11</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># Librerías</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Label</span><span class="p">,</span> <span class="n">Entry</span><span class="p">,</span> <span class="n">StringVar</span><span class="p">,</span> <span class="n">IntVar</span><span class="p">,</span> <span class="n">DoubleVar</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">showerror</span><span class="p">,</span> <span class="n">showinfo</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span>
+<span class="kn">from</span> <span class="nn">modelo</span> <span class="kn">import</span> <span class="n">DataBase</span><span class="p">,</span> <span class="n">ABMC</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">En la clase Ventana se definen todos sus elementos.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Clase</span>
+<div class="viewcode-block" id="Ventana">
+<a class="viewcode-back" href="../vista.html#vista.Ventana">[documentos]</a>
+<span class="k">class</span> <span class="nc">Ventana</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span> <span class="o">=</span> <span class="n">window</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">DataBase</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Liquidaciones&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">objeto_base</span> <span class="o">=</span> <span class="n">ABMC</span><span class="p">()</span>
+                    
+        <span class="c1"># Accesorios de la ventana gráfica</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">titulo</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Registro de Liquidaciones&#39;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;DarkOrchid3&#39;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s1">&#39;thistle1&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">titulo</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">W</span><span class="o">+</span><span class="n">E</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Elementos de sección Agregar Liquidación.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;ID*: (Ingrese un ID único)&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">empresa</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Empresa*:&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">empresa</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">detalle</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Detalle*:&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">detalle</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pagado</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Monto Pagado*:&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pagado</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fecha</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Fecha de cierre*:</span><span class="se">\n</span><span class="s1">(dd/mm/yyyy)&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comisiones</span><span class="o">=</span><span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Monto Facturado*:&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comisiones</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pagoRecibido</span><span class="o">=</span><span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Pago Recibido:&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pagoRecibido</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">W</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+        
+        <span class="c1"># Defino variables para tomar valores de campos de entrada</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">id_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">emp_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">det_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pago_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fecha_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">comis_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pagoRec_val</span> <span class="o">=</span> <span class="n">IntVar</span><span class="p">(),</span> <span class="n">StringVar</span><span class="p">(),</span> <span class="n">StringVar</span><span class="p">(),</span> <span class="n">DoubleVar</span><span class="p">(),</span> <span class="n">StringVar</span><span class="p">(),</span> <span class="n">DoubleVar</span><span class="p">(),</span> <span class="n">StringVar</span><span class="p">()</span>
+        <span class="n">w_ancho</span> <span class="o">=</span> <span class="mi">20</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada1</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">textvariable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_val</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">w_ancho</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada2</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">textvariable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">emp_val</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">w_ancho</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada3</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">textvariable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">det_val</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">w_ancho</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada3</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada4</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">textvariable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pago_val</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">w_ancho</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada4</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada5</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">textvariable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fecha_val</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">w_ancho</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada5</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada6</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">textvariable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">comis_val</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">w_ancho</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada6</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada7</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">textvariable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pagoRec_val</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">w_ancho</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">entrada7</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Elementos de la sección Filtrar.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filtroEmp</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Buscar por Empresa&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filtroEmp</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">W</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filtromesyanio</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Buscar por Mes</span><span class="se">\n</span><span class="s1">(mm/yyyy)&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filtromesyanio</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">W</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">filtroemp_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtromesyanio_val</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">(),</span> <span class="n">StringVar</span><span class="p">()</span>
+        <span class="n">w_ancho</span> <span class="o">=</span> <span class="mi">20</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">inputEmp</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">textvariable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtroemp_val</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">w_ancho</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inputEmp</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filtromesyanio</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtromesyanio_val</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">w_ancho</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filtromesyanio</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Se define la vista de la sección Treeview</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Treeview</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span> <span class="s1">&#39;col2&#39;</span><span class="p">,</span> <span class="s1">&#39;col3&#39;</span><span class="p">,</span> <span class="s1">&#39;col4&#39;</span><span class="p">,</span> <span class="s1">&#39;col5&#39;</span><span class="p">,</span> <span class="s1">&#39;col6&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;#0&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">minwidth</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="n">W</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">minwidth</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;col2&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">minwidth</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;col3&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">minwidth</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;col4&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">minwidth</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;col5&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">minwidth</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;col6&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">minwidth</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s1">&#39;#0&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;ID&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Empresa&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s1">&#39;col2&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Detalle&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s1">&#39;col3&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Monto Pagado&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s1">&#39;col4&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Fecha de cierre&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s1">&#39;col5&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Monto Facturado&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="s1">&#39;col6&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Pago Recibido&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Sección Botones</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">botonAgregar</span><span class="o">=</span><span class="n">Button</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Agregar&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">vistaAlta</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">botonAgregar</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">botonFiltrar</span><span class="o">=</span><span class="n">Button</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Filtrar&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">vistaFiltrar</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">botonFiltrar</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">botonBorrarFiltro</span><span class="o">=</span><span class="n">Button</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Eliminar Filtro&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">vistaActualizarTree</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">botonBorrarFiltro</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">botonCalcularTotales</span><span class="o">=</span><span class="n">Button</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Calcular Totales&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">vistaTotales</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">botonCalcularTotales</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">botonBorrar</span><span class="o">=</span><span class="n">Button</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Borrar Elemento Seleccionado&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">vistaBorrar</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">botonBorrar</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">botonEditar</span><span class="o">=</span><span class="n">Button</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Editar Elemento Seleccionado&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">vistaEditar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">w_ancho</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">botonEditar</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Métodos:</span>
+<span class="sd">        Define la acción de cada botón.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># Métodos</span>
+<div class="viewcode-block" id="Ventana.vistaDataBase">
+<a class="viewcode-back" href="../vista.html#vista.Ventana.vistaDataBase">[documentos]</a>
+    <span class="k">def</span> <span class="nf">vistaDataBase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">retorno</span> <span class="o">=</span> <span class="n">DataBase</span><span class="o">.</span><span class="n">crearTabla</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">retorno</span><span class="p">:</span>
+            <span class="n">showinfo</span><span class="p">(</span><span class="s1">&#39;Alerta&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">retorno</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="Ventana.vistaActualizarTree">
+<a class="viewcode-back" href="../vista.html#vista.Ventana.vistaActualizarTree">[documentos]</a>
+    <span class="k">def</span> <span class="nf">vistaActualizarTree</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retorno</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objeto_base</span><span class="o">.</span><span class="n">actualizarTreeview</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">retorno</span><span class="p">:</span>
+            <span class="n">showinfo</span><span class="p">(</span><span class="s1">&#39;Alerta&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">retorno</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Ventana.vistaAlta">
+<a class="viewcode-back" href="../vista.html#vista.Ventana.vistaAlta">[documentos]</a>
+    <span class="k">def</span> <span class="nf">vistaAlta</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+        <span class="n">retorno</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objeto_base</span><span class="o">.</span><span class="n">alta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">emp_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">det_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pago_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fecha_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">comis_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pagoRec_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">retorno</span><span class="p">:</span>
+            <span class="n">showinfo</span><span class="p">(</span><span class="s1">&#39;Alerta&#39;</span><span class="p">,</span> <span class="n">retorno</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="Ventana.vistaFiltrar">
+<a class="viewcode-back" href="../vista.html#vista.Ventana.vistaFiltrar">[documentos]</a>
+    <span class="k">def</span> <span class="nf">vistaFiltrar</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retorno</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objeto_base</span><span class="o">.</span><span class="n">filtrar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filtroemp_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtromesyanio_val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">retorno</span><span class="p">:</span>
+            <span class="n">showinfo</span><span class="p">(</span><span class="s1">&#39;Alerta&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">retorno</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Ventana.vistaBorrar">
+<a class="viewcode-back" href="../vista.html#vista.Ventana.vistaBorrar">[documentos]</a>
+    <span class="k">def</span> <span class="nf">vistaBorrar</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retorno</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objeto_base</span><span class="o">.</span><span class="n">borrar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">retorno</span><span class="p">:</span>
+            <span class="n">showinfo</span><span class="p">(</span><span class="s1">&#39;Alerta&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">retorno</span><span class="p">)</span></div>
+
+<span class="w">            </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Define la función Editar:</span>
+<span class="sd">        Corrobora que se haya seleccionado una fila a editar.</span>
+<span class="sd">        Se crean campos de entrada con los valores de la fila a editar y los botones &quot;Guardar&quot; y &quot;Cancelar Edición&quot;.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+<div class="viewcode-block" id="Ventana.vistaEditar">
+<a class="viewcode-back" href="../vista.html#vista.Ventana.vistaEditar">[documentos]</a>
+    <span class="k">def</span> <span class="nf">vistaEditar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">w_ancho</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seleccion</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">selection</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">seleccion</span><span class="p">:</span>
+            <span class="n">showinfo</span><span class="p">(</span><span class="s1">&#39;Editar&#39;</span><span class="p">,</span> <span class="s1">&#39;Por favor, seleccione una fila para editar:&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">item</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seleccion</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filaValores</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filaID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>  
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombresCampos</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;Empresa&#39;</span><span class="p">,</span> <span class="s1">&#39;Detalle&#39;</span><span class="p">,</span> <span class="s1">&#39;Monto Pagado&#39;</span><span class="p">,</span> <span class="s1">&#39;Fecha de cierre:</span><span class="se">\n</span><span class="s1">(dd/mm/yyyy)&#39;</span><span class="p">,</span> <span class="s1">&#39;Monto Facturado&#39;</span><span class="p">,</span> <span class="s1">&#39;Pago Recibido&#39;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cuadrosEntrada</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nuevasVariables</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">etiquetas</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">valor</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nombresCampos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filaValores</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">etiqueta</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">nombre</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">etiqueta</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="n">W</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">etiquetas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">etiqueta</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">valor</span><span class="p">)</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">cuadro</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">w_ancho</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cuadro</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">cuadrosEntrada</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cuadro</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nuevasVariables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">)</span>
+<span class="w">            </span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Se definen las acciones para los botones &quot;Guardar&quot; y &quot;Cancelar edición&quot;.</span>
+<span class="sd">        Se corroboran que los datos modificados cumplan con los formatos correspondientes </span>
+<span class="sd">        y se generan los mensajes de alerta correspondientes.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">def</span> <span class="nf">guardarEdicion</span><span class="p">():</span>
+            <span class="n">nuevosValores</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">nuevasVariables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">()]</span> <span class="o">+</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nuevasVariables</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>  <span class="c1"># Excluir el primer valor que es el ID</span>
+            <span class="n">fecha</span> <span class="o">=</span> <span class="n">nuevosValores</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+            <span class="n">patronFecha</span> <span class="o">=</span> <span class="s1">&#39;^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d</span><span class="si">{4}</span><span class="s1">$&#39;</span>
+            <span class="n">montoPagado</span> <span class="o">=</span> <span class="n">nuevosValores</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">montoFacturado</span> <span class="o">=</span> <span class="n">nuevosValores</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">patronFecha</span><span class="p">,</span> <span class="n">fecha</span><span class="p">):</span>
+                <span class="n">showerror</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="s1">&#39;El formato de fecha ingresado es incorrecto. Utilice dd/mm/yyyy.&#39;</span><span class="p">)</span>
+                <span class="k">return</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">montoPagado</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">montoFacturado</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+                <span class="n">showerror</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="s1">&#39;Los valores de monto pagado o monto facturado deben ser numéricos.&#39;</span><span class="p">)</span>
+                <span class="k">return</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">nuevosValores</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">nuevosValores</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">nuevosValores</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">nuevosValores</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span>
+                <span class="n">showerror</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="s1">&#39;Los campos ID, Empresa, Detalle y Fecha son obligatorios.&#39;</span><span class="p">)</span>
+                <span class="k">return</span>
+            
+            <span class="n">retorno</span> <span class="o">=</span> <span class="n">ABMC</span><span class="o">.</span><span class="n">guardar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nuevosValores</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filaID</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vistaActualizarTree</span><span class="p">()</span> 
+            <span class="n">showinfo</span><span class="p">(</span><span class="s1">&#39;Alerta&#39;</span><span class="p">,</span> <span class="n">retorno</span><span class="p">)</span>
+            <span class="n">cancelarEdicion</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">cancelarEdicion</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">cuadro</span><span class="p">,</span> <span class="n">etiqueta</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cuadrosEntrada</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">etiquetas</span><span class="p">):</span>
+                <span class="n">cuadro</span><span class="o">.</span><span class="n">grid_remove</span><span class="p">()</span>
+                <span class="n">etiqueta</span><span class="o">.</span><span class="n">grid_remove</span><span class="p">()</span>
+                <span class="n">botonGuardar</span><span class="o">.</span><span class="n">grid_remove</span><span class="p">()</span>
+                <span class="n">botonCancelar</span><span class="o">.</span><span class="n">grid_remove</span><span class="p">()</span>
+        <span class="c1"># Botones de sección Edtiar</span>
+        <span class="n">botonGuardar</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Guardar&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">guardarEdicion</span><span class="p">())</span>
+        <span class="n">botonGuardar</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">sticky</span><span class="o">=</span><span class="n">E</span><span class="p">)</span>
+
+        <span class="n">botonCancelar</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Cancelar Edición&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">cancelarEdicion</span><span class="p">())</span>
+        <span class="n">botonCancelar</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">sticky</span><span class="o">=</span><span class="n">E</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Ventana.vistaTotales">
+<a class="viewcode-back" href="../vista.html#vista.Ventana.vistaTotales">[documentos]</a>
+    <span class="k">def</span> <span class="nf">vistaTotales</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">retorno</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">objeto_base</span><span class="o">.</span><span class="n">calcularTotales</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">retorno</span><span class="p">:</span>
+            <span class="n">showinfo</span><span class="p">(</span><span class="s1">&#39;Alerta&#39;</span><span class="p">,</span> <span class="n">retorno</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2023, Python-Nivel-Intermedio.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+Error en el manejo de datos: division by zero 2024-02-23 23:57:08
+Error en el manejo de datos: division by zero 2024-02-23 23:58:57
+Error en el manejo de datos: division by zero 2024-02-24 00:03:00
+Error en el manejo de datos: division by zero 2024-02-24 00:05:02
+Error en el manejo de datos: division by zero 2024-02-24 00:06:07
+Error en el manejo de datos: division by zero 2024-02-24 00:09:03
+Error en el manejo de datos: 'socket' object is not subscriptable None
+Error en el manejo de datos: 'socket' object is not subscriptable None
+Error en el manejo de datos: 'socket' object is not subscriptable None
+Error en el manejo de datos: 'socket' object is not subscriptable None
+Error en el manejo de datos: 'socket' object is not subscriptable None
+Error en el manejo de datos: 'socket' object is not subscriptable None
+Error en el manejo de datos: 'socket' object is not subscriptable None
+Error en el manejo de datos: 'socket' object is not subscriptable None
+Error en el manejo de datos: invalid syntax (<unknown>, line 0) 2024-02-25 18:58:30

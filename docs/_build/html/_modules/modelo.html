@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>modelo &mdash; documentación de MiProyecto - 0.0.1</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=6fcc102b"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=efdbd0b9"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MiProyecto
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../controlador.html">controlador module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelo.html">modelo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vista.html">vista module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MiProyecto</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Código de módulo</a></li>
+      <li class="breadcrumb-item active">modelo</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fuente para modelo</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Diplomatura en Python Nivel Intermedio.</span>
+<span class="sd">Alumno: Carla Svampa.</span>
+<span class="sd">Modelo - aplicacion: Registro de Liquidaciones.</span>
+<span class="sd">Librerías usadas: sqlite3 y re.</span>
+<span class="sd">Python 3.5.11</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">En la clase de la Base de datos creo los métodos para la conexión y la creación de la tabla.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1"># Clase de Base de datos</span>
+<div class="viewcode-block" id="DataBase">
+<a class="viewcode-back" href="../modelo.html#modelo.DataBase">[documentos]</a>
+<span class="k">class</span> <span class="nc">DataBase</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+        <span class="c1"># self.con = self.conexion()</span>
+        <span class="c1"># self.cursor = self.con.cursor()</span>
+        <span class="k">pass</span>
+<div class="viewcode-block" id="DataBase.crearTabla">
+<a class="viewcode-back" href="../modelo.html#modelo.DataBase.crearTabla">[documentos]</a>
+    <span class="k">def</span> <span class="nf">crearTabla</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">con</span> <span class="o">=</span> <span class="n">DataBase</span><span class="o">.</span><span class="n">conexion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;CREATE TABLE IF NOT EXISTS liquidaciones</span>
+<span class="s2">                (id INTEGER PRIMARY KEY,</span>
+<span class="s2">                empresa varchar(20) NOT NULL,</span>
+<span class="s2">                detalle varchar(10),</span>
+<span class="s2">                pagado real,</span>
+<span class="s2">                fecha DATE,</span>
+<span class="s2">                comisiones real,</span>
+<span class="s2">                pagoRecibido varchar(10))</span>
+<span class="s2">        &quot;&quot;&quot;</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conexion</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;Error de Conexión&#39;</span></div>
+
+    
+    <span class="c1"># Métodos</span>
+<div class="viewcode-block" id="DataBase.conexion">
+<a class="viewcode-back" href="../modelo.html#modelo.DataBase.conexion">[documentos]</a>
+    <span class="k">def</span> <span class="nf">conexion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;mibase.db&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">con</span></div>
+</div>
+
+<span class="w">    </span>
+
+<span class="w">        </span>
+<span class="w">        </span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">En la clase ABMC uso métodos para realizar:</span>
+<span class="sd">Actualización de la vista de datos cargados, Alta, Filtro, Calculo de totales, Baja y Guardar cambios realizados.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+        
+<span class="c1">#  Clase de Alta, Baja, Modificación y Consulta </span>
+<div class="viewcode-block" id="ABMC">
+<a class="viewcode-back" href="../modelo.html#modelo.ABMC">[documentos]</a>
+<span class="k">class</span> <span class="nc">ABMC</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+        <span class="k">pass</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Actualización de la vista:</span>
+<span class="sd">        Se eliminan todos los datos de la vista.</span>
+<span class="sd">        Se conecta con la base para buscar las liquidaciones cargadas.</span>
+<span class="sd">        Se muestran los resultados encontrados en pantalla y se cierra la conexión con la base.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1">#  Métodos</span>
+<div class="viewcode-block" id="ABMC.actualizarTreeview">
+<a class="viewcode-back" href="../modelo.html#modelo.ABMC.actualizarTreeview">[documentos]</a>
+    <span class="k">def</span> <span class="nf">actualizarTreeview</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+        <span class="n">records</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">get_children</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+            <span class="n">tree</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+
+        <span class="n">DataBase</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM liquidaciones ORDER BY id ASC&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">=</span> <span class="n">DataBase</span><span class="o">.</span><span class="n">conexion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">DataBase</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>
+
+        <span class="n">resultado</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">datos</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">resultado</span><span class="p">:</span>
+            <span class="n">tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">fila</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">6</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Alta de registro:</span>
+<span class="sd">        Corrobora que los campos obligatorios hayan sido completados.</span>
+<span class="sd">        Corrobora que el campo Fecha haya sido cargado en el formato correspondiente con Regex.</span>
+<span class="sd">        Se conecta a la base de datos y corrobora que el ID a cargar no exista en la base.</span>
+<span class="sd">        Si todo está bien, carga los datos a la base.</span>
+<span class="sd">        Limpia los campos de entrada, devuelve el mensaje de éxito correspondiente y se cierra la conexión con la base.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+<div class="viewcode-block" id="ABMC.alta">
+<a class="viewcode-back" href="../modelo.html#modelo.ABMC.alta">[documentos]</a>
+    <span class="k">def</span> <span class="nf">alta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">empresa</span><span class="p">,</span> <span class="n">detalle</span><span class="p">,</span> <span class="n">pagado</span><span class="p">,</span> <span class="n">fecha</span><span class="p">,</span> <span class="n">comisiones</span><span class="p">,</span> <span class="n">pagoRecibido</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">id</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">empresa</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">detalle</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">pagado</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">fecha</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">comisiones</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;Los campos con * son Obligatorios.&#39;</span>
+        <span class="n">patronFecha</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d</span><span class="si">{4}</span><span class="s2">$&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">patronFecha</span><span class="p">,</span> <span class="n">fecha</span><span class="o">.</span><span class="n">get</span><span class="p">()):</span>
+            <span class="k">return</span> <span class="s1">&#39;El formato de fecha ingresado es incorrecto. Utilice dd/mm/yyyy.&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">con</span> <span class="o">=</span> <span class="n">DataBase</span><span class="o">.</span><span class="n">conexion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+        <span class="c1"># Verifica si el ID ya existe en la base de datos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT id FROM liquidaciones WHERE id = ?&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="o">.</span><span class="n">get</span><span class="p">(),))</span>
+        <span class="n">existeID</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">existeID</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="s1">&#39;El ID ya existe en la base de datos, ingrese un valor diferente.&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="nb">id</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">empresa</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">detalle</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">pagado</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">fecha</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">comisiones</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">pagoRecibido</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;INSERT INTO liquidaciones(id, empresa, detalle, pagado, fecha, comisiones, pagoRecibido) VALUES (?, ?, ?, ?, ?, ?, ?)&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">actualizarTreeview</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+        <span class="c1"># Limpia los campos de entrada después de la inserción exitosa</span>
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">empresa</span><span class="p">,</span> <span class="n">detalle</span><span class="p">,</span> <span class="n">pagado</span><span class="p">,</span> <span class="n">fecha</span><span class="p">,</span> <span class="n">comisiones</span><span class="p">,</span> <span class="n">pagoRecibido</span><span class="p">):</span>
+            <span class="n">var</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s1">&#39;Liquidacion cargada con éxito.&#39;</span></div>
+
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Filtro: Funciona como motor de búsqueda. </span>
+<span class="sd">        Permite filtrar por empresa o por mes de liquidación </span>
+<span class="sd">        Se conecta con la base de datos y muestra el/los resultados en pantalla.</span>
+<span class="sd">        En caso de filtrar por fecha, corrobora que se realice en el formato correspondiente.</span>
+<span class="sd">        Luego deja los campos de entrada en blanco para hacer una nueva búsqueda y se cierra la conexión con la base.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+<div class="viewcode-block" id="ABMC.filtrar">
+<a class="viewcode-back" href="../modelo.html#modelo.ABMC.filtrar">[documentos]</a>
+    <span class="k">def</span> <span class="nf">filtrar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">empresa</span><span class="p">,</span> <span class="n">mesyanio</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">=</span><span class="n">DataBase</span><span class="o">.</span><span class="n">conexion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM liquidaciones WHERE 1=1&#39;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">empresa</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+            <span class="n">empresa_str</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">empresa</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">+=</span> <span class="s1">&#39; AND empresa LIKE :empresa&#39;</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;%</span><span class="si">{</span><span class="n">empresa_str</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">mesyanio</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">mes</span><span class="p">,</span> <span class="n">anio</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">mesyanio</span><span class="o">.</span><span class="n">get</span><span class="p">())</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+                <span class="n">mes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mes</span><span class="p">)</span>
+                <span class="n">anio</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">anio</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">+=</span> <span class="s1">&#39; AND substr(fecha, -7) LIKE :fecha&#39;</span>
+                <span class="n">params</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;%</span><span class="si">{</span><span class="n">mes</span><span class="si">:</span><span class="s1">02d</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">anio</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span> 
+
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="k">return</span> <span class="s1">&#39;Error&#39;</span><span class="p">,</span><span class="s1">&#39;Ingrese una fecha válida en formato mm/aaaa.&#39;</span>
+                
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+        <span class="n">resultado</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">get_children</span><span class="p">():</span>
+            <span class="n">tree</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">resultado</span><span class="p">:</span>
+            <span class="n">tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">fila</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">fila</span><span class="p">[</span><span class="mi">6</span><span class="p">]))</span>
+
+        <span class="n">empresa</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">mesyanio</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<span class="w">        </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Calcular Totales: </span>
+<span class="sd">        suma los montos pagados y facturados de todas las liquidaciones que se muestran en pantalla.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+<div class="viewcode-block" id="ABMC.calcularTotales">
+<a class="viewcode-back" href="../modelo.html#modelo.ABMC.calcularTotales">[documentos]</a>
+    <span class="k">def</span> <span class="nf">calcularTotales</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">totalPagado</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">totalFacturado</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">get_children</span><span class="p">():</span>
+            <span class="n">fila</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">row</span><span class="p">)[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">totalPagado</span> <span class="o">+=</span> <span class="nb">float</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">totalFacturado</span> <span class="o">+=</span> <span class="nb">float</span><span class="p">(</span><span class="n">fila</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">filaTotales</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Total&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">totalPagado</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">totalFacturado</span><span class="p">)</span>
+        <span class="n">tree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filaTotales</span><span class="p">)</span></div>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Borrar: </span>
+<span class="sd">        Corrobora que se haya seleccionado una fila, se conecta con la base.</span>
+<span class="sd">        Obtiene los datos de la fila a eliminar, borra los datos de la base.</span>
+<span class="sd">        Se cierra la conexión a la base</span>
+<span class="sd">        y devuelve un mensaje mostrando los datos de la fila eliminada.</span>
+<span class="sd">        </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+<div class="viewcode-block" id="ABMC.borrar">
+<a class="viewcode-back" href="../modelo.html#modelo.ABMC.borrar">[documentos]</a>
+    <span class="k">def</span> <span class="nf">borrar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">):</span>
+        <span class="n">valor</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">selection</span><span class="p">()</span> 
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">valor</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;Por favor, seleccione una fila para eliminar.&#39;</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+        <span class="n">mi_id</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">con</span> <span class="o">=</span> <span class="n">DataBase</span><span class="o">.</span><span class="n">conexion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">mi_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mi_id</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">mi_id</span><span class="p">,)</span>
+        
+        <span class="c1"># Obtengo los datos antes de eliminar la fila</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM liquidaciones WHERE id = ?;&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">filaEliminada</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;DELETE FROM liquidaciones WHERE id = ?;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">tree</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        
+        <span class="c1"># Muestro los datos de la fila eliminada</span>
+        <span class="k">if</span> <span class="n">filaEliminada</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Elemento eliminado con éxito.</span><span class="se">\n</span><span class="s1">Datos eliminados: </span><span class="si">{</span><span class="n">filaEliminada</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;Elemento eliminado con éxito. Los datos no se pudieron recuperar.&#39;</span></div>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Guardar: </span>
+<span class="sd">        En caso de edición de una liquidación, se conecta con la base</span>
+<span class="sd">        guarda los nuevos datos ingresados para la fila seleccionada</span>
+<span class="sd">        y se cierra la conexión con la base.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+<div class="viewcode-block" id="ABMC.guardar">
+<a class="viewcode-back" href="../modelo.html#modelo.ABMC.guardar">[documentos]</a>
+    <span class="k">def</span> <span class="nf">guardar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nuevosValores</span><span class="p">,</span> <span class="n">filaID</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">con</span> <span class="o">=</span> <span class="n">DataBase</span><span class="o">.</span><span class="n">conexion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;UPDATE liquidaciones SET id=?, empresa=?, detalle=?, pagado=?, fecha=?, comisiones=?, pagoRecibido=? WHERE id=?&#39;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">nuevosValores</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">filaID</span><span class="p">,)</span> 
+        
+            <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="k">return</span> <span class="s1">&#39;Los cambios se han guardado exitosamente.&#39;</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Error al guardar cambios: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2023, Python-Nivel-Intermedio.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

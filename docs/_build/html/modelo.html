@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="es" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>modelo module &mdash; documentación de MiProyecto - 0.0.1</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=6fcc102b"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=efdbd0b9"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            MiProyecto
+          </a>
+              <div class="version">
+                0.0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Buscar documentos" aria-label="Buscar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">modelo module</a><ul>
+<li><a class="reference internal" href="#modelo.ABMC"><code class="docutils literal notranslate"><span class="pre">ABMC</span></code></a><ul>
+<li><a class="reference internal" href="#modelo.ABMC.actualizarTreeview"><code class="docutils literal notranslate"><span class="pre">ABMC.actualizarTreeview()</span></code></a></li>
+<li><a class="reference internal" href="#modelo.ABMC.alta"><code class="docutils literal notranslate"><span class="pre">ABMC.alta()</span></code></a></li>
+<li><a class="reference internal" href="#modelo.ABMC.borrar"><code class="docutils literal notranslate"><span class="pre">ABMC.borrar()</span></code></a></li>
+<li><a class="reference internal" href="#modelo.ABMC.calcularTotales"><code class="docutils literal notranslate"><span class="pre">ABMC.calcularTotales()</span></code></a></li>
+<li><a class="reference internal" href="#modelo.ABMC.filtrar"><code class="docutils literal notranslate"><span class="pre">ABMC.filtrar()</span></code></a></li>
+<li><a class="reference internal" href="#modelo.ABMC.guardar"><code class="docutils literal notranslate"><span class="pre">ABMC.guardar()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modelo.DataBase"><code class="docutils literal notranslate"><span class="pre">DataBase</span></code></a><ul>
+<li><a class="reference internal" href="#modelo.DataBase.conexion"><code class="docutils literal notranslate"><span class="pre">DataBase.conexion()</span></code></a></li>
+<li><a class="reference internal" href="#modelo.DataBase.crearTabla"><code class="docutils literal notranslate"><span class="pre">DataBase.crearTabla()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MiProyecto</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">modelo module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/modelo.rst.txt" rel="nofollow"> Ver código fuente de la página</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-modelo">
+<span id="modelo-module"></span><h1>modelo module<a class="headerlink" href="#module-modelo" title="Link to this heading"></a></h1>
+<p>Diplomatura en Python Nivel Intermedio.
+Alumno: Carla Svampa.
+Modelo - aplicacion: Registro de Liquidaciones.
+Librerías usadas: sqlite3 y re.
+Python 3.5.11</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="modelo.ABMC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">ABMC</span></span><a class="reference internal" href="_modules/modelo.html#ABMC"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#modelo.ABMC" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.ABMC.actualizarTreeview">
+<span class="sig-name descname"><span class="pre">actualizarTreeview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#ABMC.actualizarTreeview"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#modelo.ABMC.actualizarTreeview" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.ABMC.alta">
+<span class="sig-name descname"><span class="pre">alta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">empresa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detalle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pagado</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fecha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comisiones</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pagoRecibido</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#ABMC.alta"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#modelo.ABMC.alta" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.ABMC.borrar">
+<span class="sig-name descname"><span class="pre">borrar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#ABMC.borrar"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#modelo.ABMC.borrar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.ABMC.calcularTotales">
+<span class="sig-name descname"><span class="pre">calcularTotales</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#ABMC.calcularTotales"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#modelo.ABMC.calcularTotales" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.ABMC.filtrar">
+<span class="sig-name descname"><span class="pre">filtrar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">empresa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesyanio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#ABMC.filtrar"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#modelo.ABMC.filtrar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.ABMC.guardar">
+<span class="sig-name descname"><span class="pre">guardar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nuevosValores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filaID</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#ABMC.guardar"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#modelo.ABMC.guardar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="modelo.DataBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modelo.</span></span><span class="sig-name descname"><span class="pre">DataBase</span></span><a class="reference internal" href="_modules/modelo.html#DataBase"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#modelo.DataBase" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.DataBase.conexion">
+<span class="sig-name descname"><span class="pre">conexion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#DataBase.conexion"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#modelo.DataBase.conexion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="modelo.DataBase.crearTabla">
+<span class="sig-name descname"><span class="pre">crearTabla</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/modelo.html#DataBase.crearTabla"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#modelo.DataBase.crearTabla" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Derechos de autor 2023, Python-Nivel-Intermedio.</p>
+  </div>
+
+  Compilado con <a href="https://www.sphinx-doc.org/">Sphinx</a> usando un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    proporcionado por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

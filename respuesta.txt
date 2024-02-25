@@ -1,0 +1,12 @@
+Se ha editado la liquidacion nro: 5 2024-02-23 22:15:58
+Se ha editado la liquidacion nro: 5 2024-02-23 22:16:22
+Se ha editado la liquidacion nro: 1 2024-02-23 22:21:41
+(1, 'EFSF', 'EFWE', 2343.0, '10/10/2020', 213.0, '') 2024-02-23 22:26:03
+Se ha editado la liquidacion nro: 2 2024-02-23 22:52:54
+(2, 'AA', 'fse', 23423.0, '10/10/2020', 790.0, '') 2024-02-23 22:52:59
+Se ha editado la liquidacion nro: 2 2024-02-24 10:36:59
+Se ha editado la liquidacion nro: 4 2024-02-25 20:42:41
+Se ha editado la liquidacion nro: 4 2024-02-25 20:46:42
+Se ha editado la liquidacion nro: 2 2024-02-25 20:50:32
+Se ha editado la liquidacion nro: 2 2024-02-25 20:51:17
+Se ha editado la liquidacion nro: 4 2024-02-25 20:55:30
